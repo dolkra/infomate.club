@@ -10,6 +10,7 @@ RUN apt-get update \
     && apt-get install --no-install-recommends -yq \
       python3 \
       python3-pip \
+      python3-dev \
       gcc \
       libc-dev \
       libpq-dev \
