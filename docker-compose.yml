@@ -1,12 +1,10 @@
-version: '3.7'
-
 services:
   infomate_app: &app
     build:
       context: .
       args:
         requirements: requirements.txt
-    command: make docker-run-app
+    command: make run
     container_name: infomate_app
     environment:
       - DEBUG=True
@@ -19,7 +17,8 @@ services:
     volumes:
       - .:/app:delegated
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     ports:
       - "8000:8000"
 
@@ -32,11 +31,17 @@ services:
         - POSTGRES_DB=infomate
     ports:
         - "54321:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U vas3k -d infomate"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    command: postgres -c enable_parallel_hash=off
 
   migrate_and_init:
     <<: *app
     container_name: infomate_migrate_and_init
-    restart: "no"
+    restart: on-failure:3
     ports: []
     command: make migrate feed_init feed_refresh
 

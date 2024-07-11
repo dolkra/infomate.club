@@ -15,3 +15,4 @@ newspaper3k>=0.2.8
 django-bleach==1.0.0
 django-debug-toolbar==3.4.0
 tzdata
+lxml_html_clean

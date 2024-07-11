@@ -29,3 +29,5 @@ RUN pip install --no-cache-dir -e . \
     && pip install --no-cache-dir -r $requirements
 
 RUN python3 -c "import nltk; nltk.download('punkt')"
+
+RUN rm -rf /app

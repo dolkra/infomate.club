@@ -154,7 +154,7 @@ def load_page_html(url):
             url=url,
             headers=DEFAULT_REQUEST_HEADERS,
             allow_redirects=True,
-            timeout=30,
+            timeout=10,
             verify=False
         ).text
     except Exception as ex:

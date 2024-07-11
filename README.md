@@ -33,10 +33,10 @@ Text summarization is done via [newspaper3k](https://newspaper.readthedocs.io/en
 
 The easy way. Install [docker](https://docs.docker.com/install/) on your machine. Then:
 
-```
-git clone git@github.com:vas3k/infomate.club.git
-cd infomate.club
-docker-compose up --build
+```shell script
+$ git clone git@github.com:vas3k/infomate.club.git
+$ cd infomate.club
+$ sudo docker compose up
 ```
 
 On the first run you might need to wait until the "migrate_and_init" container will finish its job populating your database. 
@@ -45,14 +45,15 @@ After that you can open [localhost:8000](http://localhost:8000) in your favorite
 If something stucked or you want to terminate it completely, use this command in another terminal:
 
 ```shell script
-docker-compose down --remove-orphans
+$ sudo docker compose down --remove-orphans
 ```
 
 
 ## ⚙️ boards.yml format
 
-All collections and feeds are stored in one file — [boards.yml](boards.yml). 
+Example collections and feeds are stored in one file — [boards.yml](boards.yml). 
 This is your main and only entry point to add new stuff. 
+Full list of very many boards is stored in the file [boards.full.yml](boards.full.yml), but take into the account that first RSS syncrhonizing of full list can take up to a hour. 
 
 ```
 boards:
@@ -88,7 +89,7 @@ boards:
             word: Trump   # exclude articles with a word "Trump" in title
 ```
 
-## 💎 Running in production
+## 💎 Running in production (UNTESTED AT 11.07.2024)
 
 Deployment is done using a simple Github Action which builds a docker container, puts it into Github Registry, logs into your server via SSH and pulls it. 
 The pipeline is triggered on every push to master branch. If you want to set up your own fork, please add these constants to your repo SECRETS:
