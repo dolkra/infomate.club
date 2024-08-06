@@ -1,6 +1,6 @@
 services:
   app: &app
-    image: ghcr.io/dolkra/infomate:${GITHUB_SHA:-latest}
+    image: ghcr.io/dolkra/infomate:latest
     command: make docker-run-app
     container_name: infomate_app
     environment:
