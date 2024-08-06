@@ -1,3 +1,4 @@
+version: "3"
 services:
   app: &app
     image: ghcr.io/dolkra/infomate:latest
